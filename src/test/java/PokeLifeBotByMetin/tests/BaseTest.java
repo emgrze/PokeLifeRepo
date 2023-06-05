@@ -21,10 +21,6 @@ public class BaseTest {
         driver.get("https://pokelife.pl/");
         driver.manage().window().maximize();
     }
-
-
-
-
     @AfterMethod
     public void tearDown() {
         driver.quit();
