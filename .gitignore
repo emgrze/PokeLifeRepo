@@ -5,3 +5,5 @@
 /.idea/PokeLifeRepo.iml
 /.idea/vcs.xml
 /.idea/
+/target/test-classes/PokeLifeBotByMetin/tests/BaseTest.class
+/target/test-classes/PokeLifeBotByMetin/tests/LogInTest.class
