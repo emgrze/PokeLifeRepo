@@ -24,4 +24,4 @@ public class LogInTest extends BaseTest {
         logInButton.click();
     }
 }
-//branch
+//branch2
