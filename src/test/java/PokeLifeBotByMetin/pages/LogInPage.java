@@ -16,15 +16,17 @@ public class LogInPage {
     @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement logInButton;
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
     public LogInPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        this.driver = driver;
+        LogInPage.driver = driver;
     }
 
     public void login(String username, String password) {
+        loginInput.clear();
         loginInput.sendKeys(username);
+        passInput.clear();
         passInput.sendKeys(password);
         logInButton.click();
     }
