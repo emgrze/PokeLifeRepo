@@ -34,7 +34,7 @@ public class LoggedInPage {
 
         int intPA = Integer.parseInt(currentPA);
         int intMaxPA = Integer.parseInt(maxPA);
-//        System.out.println("PA jako int: " + intPA);
+        System.out.println("PA jako int: " + intPA);
 
         if (intPA >= 5) {
             System.out.println("Chcecking if PA >= 5 successful");
