@@ -13,6 +13,22 @@ public class LoggedInPage {
     @FindBy(xpath = "//*[contains(text(), 'PA')]")
     private WebElement PAlevel;
 
+    private int intPA;
+    private int intMaxPA;
+
+    public LoggedInPage(int intPA, int intMaxPA) {
+        this.intPA = intPA;
+        this.intMaxPA = intMaxPA;
+    }
+
+    public int getIntPA() {
+        return intPA;
+    }
+
+    public int getIntMaxPA() {
+        return intMaxPA;
+    }
+
     private WebDriver driver;
 
     public LoggedInPage(WebDriver driver) {
@@ -32,8 +48,8 @@ public class LoggedInPage {
         System.out.println("PA left: " + currentPA);
         System.out.println("Max PA: " + maxPA);
 
-        int intPA = Integer.parseInt(currentPA);
-        int intMaxPA = Integer.parseInt(maxPA);
+        intPA = Integer.parseInt(currentPA);
+        intMaxPA = Integer.parseInt(maxPA);
         System.out.println("PA jako int: " + intPA);
 
         if (intPA >= 5) {
