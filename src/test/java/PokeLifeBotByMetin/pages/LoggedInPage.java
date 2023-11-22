@@ -13,6 +13,9 @@ public class LoggedInPage {
     @FindBy(xpath = "//*[contains(text(), 'PA')]")
     private WebElement PAlevel;
 
+    @FindBy(xpath = "(//button[text()='Zamknij'])[1]")
+    private WebElement notificationBtnClose;
+
     private int intPA;
     private int intMaxPA;
 
@@ -58,5 +61,10 @@ public class LoggedInPage {
             System.out.println("PA < 5");
         }
         System.out.println("int max PA readed: " + intMaxPA);
+    }
+    public void notificationClose() {
+        if(notificationBtnClose.isDisplayed()) {
+            notificationBtnClose.click();
+        }
     }
 }

@@ -50,13 +50,6 @@ public class WildPage {
             if (continueButton.isDisplayed()){
             continueButton.click();}
         }
-//        if (pokemonToFight.isDisplayed()){
-//            pokemonToFight.click();
-//        } else if (pokeBall.isDisplayed()){
-//            pokeBall.click();
-//        } else{
-//            continueButton.click();
-//        }
     }
 
     public String getWildTitle() {

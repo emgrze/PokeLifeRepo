@@ -14,12 +14,10 @@ public class GoToWildTest extends BaseTest{
         logInPage.login("lolku123", "lolku1234");
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
+        loggedInPage.notificationClose();
         loggedInPage.loggedUser();
 
         WildPage wildPage = new WildPage(driver);
-
-//        int maxxxPa = loggedInPage.getIntMaxPA();
-//        int presentPa = loggedInPage.getIntPA();
 
         wildPage.goWild();
         Assert.assertEquals(wildPage.getWildTitle(),"Dzicz - wyprawa");
