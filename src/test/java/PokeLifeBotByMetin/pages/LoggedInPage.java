@@ -6,6 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoggedInPage {
+    private static WebDriver driver;
+
+    public LoggedInPage(WebDriver driver) {
+        LoggedInPage.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
 
     @FindBy(id = "wyloguj")
     private WebElement logOutBtn;
@@ -19,24 +25,8 @@ public class LoggedInPage {
     private int intPA;
     private int intMaxPA;
 
-    public LoggedInPage(int intPA, int intMaxPA) {
-        this.intPA = intPA;
-        this.intMaxPA = intMaxPA;
-    }
-
     public int getIntPA() {
         return intPA;
-    }
-
-    public int getIntMaxPA() {
-        return intMaxPA;
-    }
-
-    private WebDriver driver;
-
-    public LoggedInPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
     }
 
     public void loggedUser() {
@@ -62,9 +52,11 @@ public class LoggedInPage {
         }
         System.out.println("int max PA readed: " + intMaxPA);
     }
+
     public void notificationClose() {
-        if(notificationBtnClose.isDisplayed()) {
+        if (notificationBtnClose.isDisplayed()) {
             notificationBtnClose.click();
+            System.out.println("Notification closed");
         }
     }
 }

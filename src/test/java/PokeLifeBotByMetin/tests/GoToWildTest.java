@@ -3,11 +3,10 @@ package PokeLifeBotByMetin.tests;
 import PokeLifeBotByMetin.pages.LogInPage;
 import PokeLifeBotByMetin.pages.LoggedInPage;
 import PokeLifeBotByMetin.pages.WildPage;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GoToWildTest extends BaseTest{
+public class GoToWildTest extends BaseTest {
     @Test
     public void goToWildTest() {
         LogInPage logInPage = new LogInPage(driver);
@@ -20,7 +19,7 @@ public class GoToWildTest extends BaseTest{
         WildPage wildPage = new WildPage(driver);
 
         wildPage.goWild();
-        Assert.assertEquals(wildPage.getWildTitle(),"Dzicz - wyprawa");
+        Assert.assertEquals(wildPage.getWildTitle(), "Dzicz - wyprawa");
 
         do {
             loggedInPage.getIntPA();
@@ -28,6 +27,6 @@ public class GoToWildTest extends BaseTest{
             loggedInPage.getIntPA();
             loggedInPage.PAcheck();
             System.out.println("Pozostałe PA: " + loggedInPage.getIntPA());
-        }while (loggedInPage.getIntPA()>=5);
+        } while (loggedInPage.getIntPA() >= 5);
     }
 }
