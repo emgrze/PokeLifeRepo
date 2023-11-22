@@ -2,7 +2,6 @@ package PokeLifeBotByMetin.tests;
 
 import PokeLifeBotByMetin.pages.LogInPage;
 import PokeLifeBotByMetin.pages.LoggedInPage;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckPA extends BaseTest {

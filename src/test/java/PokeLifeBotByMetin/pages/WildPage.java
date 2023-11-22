@@ -36,19 +36,22 @@ public class WildPage {
         PageFactory.initElements(driver, this);
         WildPage.driver = driver;
     }
+
     public void goWild() {
         placesList.click();
         wildButton.click();
         alejkaSpacerowaButton.click();
     }
+
     public void startExp() {
-        try{
-            if (pokemonToFight.isDisplayed()){
-            pokemonToFight.click();
-        }
-        }catch (Exception e) {
-            if (continueButton.isDisplayed()){
-            continueButton.click();}
+        try {
+            if (pokemonToFight.isDisplayed()) {
+                pokemonToFight.click();
+            }
+        } catch (Exception e) {
+            if (continueButton.isDisplayed()) {
+                continueButton.click();
+            }
         }
     }
 
