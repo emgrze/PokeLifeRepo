@@ -43,14 +43,12 @@ public class LoggedInPage {
 
         intPA = Integer.parseInt(currentPA);
         intMaxPA = Integer.parseInt(maxPA);
-        System.out.println("PA jako int: " + intPA);
 
         if (intPA >= 5) {
             System.out.println("Chcecking if PA >= 5 successful");
         } else {
-            System.out.println("PA < 5");
+            System.out.println("PA < 5, app is closing");
         }
-        System.out.println("int max PA readed: " + intMaxPA);
     }
 
     public void notificationClose() {

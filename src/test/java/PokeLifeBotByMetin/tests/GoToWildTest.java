@@ -10,7 +10,8 @@ public class GoToWildTest extends BaseTest {
     @Test
     public void goToWildTest() {
         LogInPage logInPage = new LogInPage(driver);
-        logInPage.login("lolku123", "lolku1234");
+        logInPage.login("lolku123", "lolku1234!");
+//        logInPage.login("lolku1234", "lolku1234!");
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
         loggedInPage.notificationClose();
@@ -26,7 +27,6 @@ public class GoToWildTest extends BaseTest {
             wildPage.startExp();
             loggedInPage.getIntPA();
             loggedInPage.PAcheck();
-            System.out.println("Pozostałe PA: " + loggedInPage.getIntPA());
         } while (loggedInPage.getIntPA() >= 5);
     }
 }

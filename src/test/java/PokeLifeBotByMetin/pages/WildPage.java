@@ -17,7 +17,7 @@ public class WildPage {
     @FindBy(xpath = "(//button[text()='Podróżuj'])[1]")
     private WebElement alejkaSpacerowaButton;
 
-    @FindBy(xpath = "(//img[@class='img-responsive'])[2]")
+    @FindBy(xpath = "(//button[contains(@class,'btn btn-akcja')]//img)[1]")
     private WebElement pokemonToFight;
 
     @FindBy(xpath = "(//div[@role='group']//button)[2]")
@@ -26,13 +26,13 @@ public class WildPage {
     @FindBy(xpath = "//div[text()='Dzicz - wyprawa']")
     private WebElement wildTitle;
 
-    @FindBy(xpath = "//img[@alt='Pokeball']")
+    @FindBy(xpath = "//label[@data-original-title='Pokeball']")
     private WebElement pokeBall;
 
     private static WebDriver driver;
 
     public WildPage(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
         WildPage.driver = driver;
     }
@@ -47,14 +47,22 @@ public class WildPage {
         try {
             if (pokemonToFight.isDisplayed()) {
                 pokemonToFight.click();
+                System.out.println("Pokemon chosen");
+                pokeBall.click();
+            } else if (pokeBall.isDisplayed()) {
+                pokeBall.click();
+                System.out.println("Pokeball thrown");
+            } else {
+                pokeBall.click();
+                System.out.println("Pokeball thrown");
             }
         } catch (Exception e) {
             if (continueButton.isDisplayed()) {
                 continueButton.click();
+                System.out.println("Continue button clicked");
             }
         }
     }
-
     public String getWildTitle() {
         return wildTitle.getText();
     }
