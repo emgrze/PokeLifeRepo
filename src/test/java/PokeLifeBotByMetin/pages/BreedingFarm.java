@@ -21,6 +21,9 @@ public class BreedingFarm {
     @FindBy(name = "tekst")
     private WebElement confirmationInput;
 
+    @FindBy(xpath = "(//div[contains(.,'Za sprzedanie')])[5]")
+    private WebElement allSold;
+
     private static WebDriver driver;
 
     public BreedingFarm(WebDriver driver) {

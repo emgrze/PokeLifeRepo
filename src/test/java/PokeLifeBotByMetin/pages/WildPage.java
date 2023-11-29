@@ -49,9 +49,7 @@ public class WildPage {
                 pokemonToFight.click();
                 System.out.println("Pokemon chosen");
                 pokeBall.click();
-            } else if (pokeBall.isDisplayed()) {
-                pokeBall.click();
-                System.out.println("Pokeball thrown");
+
             } else {
                 pokeBall.click();
                 System.out.println("Pokeball thrown");
@@ -63,6 +61,7 @@ public class WildPage {
             }
         }
     }
+
     public String getWildTitle() {
         return wildTitle.getText();
     }

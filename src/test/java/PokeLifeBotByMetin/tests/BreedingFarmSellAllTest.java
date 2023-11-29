@@ -9,7 +9,7 @@ public class BreedingFarmSellAllTest extends BaseTest {
     @Test
     public void sellAllPokemon() {
         LogInPage logInPage = new LogInPage(driver);
-//        logInPage.login("lolku123", "lolku1234");
+//        logInPage.login("lolku123", "lolku1234!");
         logInPage.login("lolku1234", "lolku1234!");
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
