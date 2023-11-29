@@ -20,12 +20,28 @@ public class GoWorkPage {
     @FindBy(xpath = "//button[text()='Zakończ']")
     private WebElement finishWorkBtn;
 
+    @FindBy(xpath = "(//div[contains(.,'Jesteś w trakcie Pracy.Przejdź do Aktywności')])[4]")
+    private WebElement workNotification;
+
     private static WebDriver driver;
 
     public GoWorkPage(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
         GoWorkPage.driver = driver;
+    }
+
+    public void checkWorkStatus() {
+//        characterList.click();
+//        activityBtn.click();
+        try {
+            if (workNotification.isDisplayed()) {
+                finishWork();
+                System.out.println("Work finished");
+            }
+        } catch (Exception e) {
+            System.out.println("You're not at work, test continues");
+        }
     }
 
     public void goWork() {
