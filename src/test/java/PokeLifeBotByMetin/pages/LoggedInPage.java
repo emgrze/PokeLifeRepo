@@ -38,8 +38,8 @@ public class LoggedInPage {
         String currentPA = str.substring(0, str.indexOf("/"));
         String restPA = str.substring(str.indexOf("/") + 1);
         String maxPA = restPA.substring(0, 3);
-        System.out.println("PA left: " + currentPA);
-        System.out.println("Max PA: " + maxPA);
+        System.out.println("PA left: " + currentPA + "/" + maxPA);
+//        System.out.println("Max PA: " + maxPA);
 
         intPA = Integer.parseInt(currentPA);
         intMaxPA = Integer.parseInt(maxPA);

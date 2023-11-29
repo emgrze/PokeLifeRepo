@@ -40,7 +40,7 @@ public class GoWorkPage {
                 System.out.println("Work finished");
             }
         } catch (Exception e) {
-            System.out.println("You're not at work, test continues");
+            System.out.println("Work status checked, test continues");
         }
     }
 
