@@ -32,8 +32,6 @@ public class GoWorkPage {
     }
 
     public void checkWorkStatus() {
-//        characterList.click();
-//        activityBtn.click();
         try {
             if (workNotification.isDisplayed()) {
                 finishWork();
