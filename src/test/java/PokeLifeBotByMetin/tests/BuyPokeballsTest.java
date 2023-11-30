@@ -6,9 +6,9 @@ import PokeLifeBotByMetin.pages.PokeshopPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class BuyPokeballsTest extends BaseTest{
+public class BuyPokeballsTest extends BaseTest {
     @Test
-    public void buyPokeballs(){
+    public void buyPokeballs() {
         LogInPage logInPage = new LogInPage(driver);
 //        logInPage.login("lolku123", "lolku1234!");
         logInPage.login("lolku1234", "lolku1234!");
