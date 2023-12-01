@@ -13,7 +13,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://pokelife.pl/");
         driver.manage().window().maximize();
     }

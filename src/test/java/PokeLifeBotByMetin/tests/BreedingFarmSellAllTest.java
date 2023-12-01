@@ -3,6 +3,7 @@ package PokeLifeBotByMetin.tests;
 import PokeLifeBotByMetin.pages.BreedingFarm;
 import PokeLifeBotByMetin.pages.LogInPage;
 import PokeLifeBotByMetin.pages.LoggedInPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BreedingFarmSellAllTest extends BaseTest {
@@ -18,5 +19,7 @@ public class BreedingFarmSellAllTest extends BaseTest {
 
         BreedingFarm breedingFarm = new BreedingFarm(driver);
         breedingFarm.sellPokemon();
+
+        Assert.assertTrue(breedingFarm.arePokemonSold());
     }
 }

@@ -47,4 +47,12 @@ public class BreedingFarm {
             System.out.println("No pokemon to sell");
         }
     }
+
+    public boolean arePokemonSold() {
+        try {
+            return allSold.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -21,6 +21,7 @@ public class LoggedInPage {
 
     @FindBy(xpath = "(//button[text()='Zamknij'])[1]")
     private WebElement notificationBtnClose;
+    //(//button[text()='Zamknij'])[1]
 
     private int intPA;
     private int intMaxPA;
@@ -57,3 +58,10 @@ public class LoggedInPage {
         }
     }
 }
+
+//    public void notificationClose() {
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].click", notificationBtnClose);
+//        notificationBtnClose.click();
+//        System.out.println("Notification closed");
+//    }

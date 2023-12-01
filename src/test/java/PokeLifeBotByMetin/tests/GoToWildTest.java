@@ -1,9 +1,6 @@
 package PokeLifeBotByMetin.tests;
 
-import PokeLifeBotByMetin.pages.GoWorkPage;
-import PokeLifeBotByMetin.pages.LogInPage;
-import PokeLifeBotByMetin.pages.LoggedInPage;
-import PokeLifeBotByMetin.pages.WildPage;
+import PokeLifeBotByMetin.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,7 +9,8 @@ public class GoToWildTest extends BaseTest {
     public void goToWildTest() {
         LogInPage logInPage = new LogInPage(driver);
 //        logInPage.login("lolku123", "lolku1234");
-        logInPage.login("lolku1234", "lolku1234!");
+        logInPage.login("lolku1234", "lolku1234!!");
+
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
         loggedInPage.notificationClose();
@@ -20,6 +18,9 @@ public class GoToWildTest extends BaseTest {
 
         GoWorkPage goWorkPage = new GoWorkPage(driver);
         goWorkPage.checkWorkStatus();
+
+        PokeshopPage pokeshopPage = new PokeshopPage(driver);
+        pokeshopPage.buyPokeballs();
 
         WildPage wildPage = new WildPage(driver);
         wildPage.goWild();

@@ -29,6 +29,12 @@ public class WildPage {
     @FindBy(xpath = "//label[@data-original-title='Pokeball']")
     private WebElement pokeBall;
 
+    @FindBy(id = "$0")
+    private WebElement pokeballQuantity;
+
+    @FindBy(xpath = "//img[@src='images/ikony/zielony_napoj.png']")
+    private WebElement greenPotion;
+
     private static WebDriver driver;
 
     public WildPage(WebDriver driver) {
@@ -48,12 +54,14 @@ public class WildPage {
             if (pokemonToFight.isDisplayed()) {
                 pokemonToFight.click();
                 System.out.println("Pokemon chosen");
+//                checkPokeballQuantity();
                 pokeBall.click();
-
-            } else {
-                pokeBall.click();
-                System.out.println("Pokeball thrown");
+                System.out.println("Pokeball thrown if");
             }
+//            else {
+//                pokeBall.click();
+//                System.out.println("Pokeball thrown");
+//            }
         } catch (Exception e) {
             if (continueButton.isDisplayed()) {
                 continueButton.click();
@@ -64,5 +72,14 @@ public class WildPage {
 
     public String getWildTitle() {
         return wildTitle.getText();
+    }
+
+    public void checkPokeballQuantity() {
+        System.out.println("liczba kulek: " + pokeballQuantity.getText());
+    }
+
+    public void drinkGreenPotion() {
+        greenPotion.click();
+        System.out.println("Green potion used");
     }
 }
