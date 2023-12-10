@@ -1,9 +1,11 @@
 package PokeLifeBotByMetin.pages;
 
+import PokeLifeBotByMetin.tests.GoToWildTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.log4testng.Logger;
 
 import java.time.Duration;
 
@@ -25,6 +27,9 @@ public class GoWorkPage {
 
     private static WebDriver driver;
 
+    private static Logger LogManager;
+    private static final Logger logger = LogManager.getLogger(GoToWildTest.class);
+
     public GoWorkPage(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
@@ -35,10 +40,10 @@ public class GoWorkPage {
         try {
             if (workNotification.isDisplayed()) {
                 finishWork();
-                System.out.println("Work finished");
+                logger.info("Work finished");
             }
         } catch (Exception e) {
-            System.out.println("Work status checked, test continues");
+            logger.info("Work status checked, test continues");
         }
     }
 

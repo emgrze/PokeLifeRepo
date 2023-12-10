@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.log4testng.Logger;
 
 import java.time.Duration;
 
@@ -27,6 +28,9 @@ public class BreedingFarmPage {
 
     private static WebDriver driver;
 
+    private static Logger LogManager;
+    private static final Logger logger = LogManager.getLogger(LoggedInPage.class);
+
     public BreedingFarmPage(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
@@ -39,13 +43,13 @@ public class BreedingFarmPage {
         try {
             if (sellBtn.isDisplayed()) {
                 sellBtn.click();
-                System.out.println("Sell btn clicked");
+                logger.info("Sell btn clicked");
                 confirmationInput.sendKeys("potwierdzam");
                 confirmationInput.sendKeys(Keys.ENTER);
-                System.out.println("Pokemons sold");
+                logger.info("Pokemon sold");
             }
         } catch (Exception e) {
-            System.out.println("No pokemon to sell");
+            logger.info("No pokemon to sell");
         }
     }
 
@@ -61,10 +65,10 @@ public class BreedingFarmPage {
         if (sellBtn.isDisplayed()) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", sellBtn);
-            System.out.println("Sell btn clicked");
+            logger.info("Sell btn clicked");
             confirmationInput.sendKeys("potwierdzam");
             confirmationInput.sendKeys(Keys.ENTER);
-            System.out.println("Pokemons sold");
+            logger.info("Pokemons sold");
         }
     }
 }

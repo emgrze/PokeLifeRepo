@@ -94,11 +94,9 @@ public class WildPage {
                 pokemonToFight.isDisplayed();
                 pokemonToFight.click();
                 logger.info("Pokemon chosen");
-//                System.out.println("Pokemon chosen");
 //                checkPokeballQuantity();
                 pokeBall.click();
                 logger.info("Pokeball thrown if");
-//                System.out.println("Pokeball thrown if");
             } else {
                 goWild();
             }
@@ -108,14 +106,12 @@ public class WildPage {
                 if (continueButton.isDisplayed()) {
                     continueButton.click();
                     logger.info("Continue button clicked");
-//                    System.out.println("Continue button clicked");
                 } else {
                     confirmPotionUsage();
                 }
             } catch (Exception f) {
                 f.printStackTrace();
                 logger.warn("Exception in startexp");
-//                System.out.println("Exception in startexp");
             }
         }
 
@@ -159,7 +155,7 @@ public class WildPage {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", potionConfirmationBtnClose);
         } catch (Exception e) {
-            System.out.println("potion window closing failed");
+            logger.warn("potion window closing failed");
         }
 
     }
@@ -170,7 +166,7 @@ public class WildPage {
                 potionConfirmationBtnClose.click();
             }
         } catch (Exception e) {
-            System.out.println("no confirmation to close");
+            logger.info("no confirmation to close");
         }
     }
 
@@ -190,10 +186,10 @@ public class WildPage {
     public void sellPokemon() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", sellBtn);
-        System.out.println("Sell btn clicked");
+        logger.info("Sell btn clicked");
         confirmationInput.sendKeys("potwierdzam");
         confirmationInput.sendKeys(Keys.ENTER);
-        System.out.println("Pokemons sold");
+        logger.info("Pokemons sold");
     }
 
     public void emptyActionBtn() {
