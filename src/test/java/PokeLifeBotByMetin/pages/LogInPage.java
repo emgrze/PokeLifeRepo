@@ -26,30 +26,26 @@ public class LogInPage {
         LogInPage.driver = driver;
     }
 
-        public void login(String username, String password) {
+    //        public void login(String username, String password) {
+//        loginInput.clear();
+//        loginInput.sendKeys(username);
+//        passInput.clear();
+//        passInput.sendKeys(password);
+//        logInButton.click();
+//    }
+    public void login(String username, String password) {
+
         loginInput.clear();
         loginInput.sendKeys(username);
         passInput.clear();
         passInput.sendKeys(password);
         logInButton.click();
     }
-//    public void login(String username, String password) {
-//        try {
-//            loginInput.clear();
-//            loginInput.sendKeys(username);
-//            passInput.clear();
-//            passInput.sendKeys(password);
-//            logInButton.click();
-//        } catch (Exception e) {
-//            Assert.assertTrue(loginFailed());{
-//                throw new SkipException("Login failed");
-//            }
-//        }
-//    }
 
     public boolean loginFailed() {
         try {
-            return loginFailedAlert.isDisplayed();
+            loginFailedAlert.isDisplayed();
+            return true;
         } catch (Exception e) {
             return false;
         }

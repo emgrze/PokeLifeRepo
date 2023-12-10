@@ -15,7 +15,8 @@ public class BuyPokeballsTest extends BaseTest {
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
         loggedInPage.notificationClose();
-        loggedInPage.loggedUser();
+        Assert.assertTrue(loggedInPage.isUserLoggedIn());
+//        loggedInPage.loggedUser();
 
         PokeshopPage pokeshopPage = new PokeshopPage(driver);
         pokeshopPage.buyPokeballs();

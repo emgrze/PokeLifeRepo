@@ -1,5 +1,6 @@
 package PokeLifeBotByMetin.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
-public class BreedingFarm {
+public class BreedingFarmPage {
     @FindBy(xpath = "(//a[@class='dropdown-toggle'])[3]")
     private WebElement placesList;
 
@@ -26,10 +27,10 @@ public class BreedingFarm {
 
     private static WebDriver driver;
 
-    public BreedingFarm(WebDriver driver) {
+    public BreedingFarmPage(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
-        BreedingFarm.driver = driver;
+        BreedingFarmPage.driver = driver;
     }
 
     public void sellPokemon() {
@@ -53,6 +54,17 @@ public class BreedingFarm {
             return allSold.isDisplayed();
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    public void sellPokemonFromWild() {
+        if (sellBtn.isDisplayed()) {
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", sellBtn);
+            System.out.println("Sell btn clicked");
+            confirmationInput.sendKeys("potwierdzam");
+            confirmationInput.sendKeys(Keys.ENTER);
+            System.out.println("Pokemons sold");
         }
     }
 }

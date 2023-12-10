@@ -3,6 +3,7 @@ package PokeLifeBotByMetin.tests;
 import PokeLifeBotByMetin.pages.GoWorkPage;
 import PokeLifeBotByMetin.pages.LogInPage;
 import PokeLifeBotByMetin.pages.LoggedInPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GoWorkTest extends BaseTest {
@@ -14,7 +15,8 @@ public class GoWorkTest extends BaseTest {
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
         loggedInPage.notificationClose();
-        loggedInPage.loggedUser();
+        Assert.assertTrue(loggedInPage.isUserLoggedIn());
+//        loggedInPage.loggedUser();
 
         GoWorkPage goWorkPage = new GoWorkPage(driver);
         goWorkPage.goWork();
@@ -28,7 +30,8 @@ public class GoWorkTest extends BaseTest {
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
         loggedInPage.notificationClose();
-        loggedInPage.loggedUser();
+        Assert.assertTrue(loggedInPage.isUserLoggedIn());
+//        loggedInPage.loggedUser();
 
         GoWorkPage goWorkPage = new GoWorkPage(driver);
         goWorkPage.finishWork();

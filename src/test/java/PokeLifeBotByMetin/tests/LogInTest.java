@@ -3,7 +3,6 @@ package PokeLifeBotByMetin.tests;
 import PokeLifeBotByMetin.pages.LogInPage;
 import PokeLifeBotByMetin.pages.LoggedInPage;
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 public class LogInTest extends BaseTest {
@@ -12,14 +11,15 @@ public class LogInTest extends BaseTest {
         LogInPage logInPage = new LogInPage(driver);
         LoggedInPage loggedInPage = new LoggedInPage(driver);
 
-        try {
-            logInPage.login("lolku123", "lolku1234");
-            loggedInPage.loggedUser();
-        } catch (Exception e) {
+        logInPage.login("lolku123", "lolku1234");
+//        logInPage.login("lolku1234", "lolku1234!");
+
+        if (loggedInPage.isUserLoggedIn()) {
+            System.out.println("Login success");
+        } else {
             Assert.assertTrue(logInPage.loginFailed());
-            {
-                throw new SkipException("Pomijam ten test");
-            }
+//            Assert.assertFalse(loggedInPage.isUserLoggedIn());
+            System.out.println("Login failed");
         }
         Assert.assertEquals(driver.getCurrentUrl(), "https://gra.pokelife.pl/index.php");
     }
