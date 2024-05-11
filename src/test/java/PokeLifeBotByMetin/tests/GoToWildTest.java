@@ -23,7 +23,7 @@ public class GoToWildTest extends BaseTest {
             }
         } catch (Exception e) {
             assertFalse(loggedInPage.isUserLoggedIn());
-            driver.quit();
+//            driver.quit();
         }
 
         loggedInPage.notificationClose();
@@ -38,16 +38,19 @@ public class GoToWildTest extends BaseTest {
 
         BreedingFarmPage breedingFarmPage = new BreedingFarmPage(driver);
 
-        wildPage.goWild();
         if(loggedInPage.getIntAid() < 80) {
             PokeCenterPage pokeCenterPage = new PokeCenterPage(driver);
             pokeCenterPage.refillAid();
         }
 
+        loggedInPage.PAcheck();
+
         while (loggedInPage.getIntPA() >= 5) {
+            wildPage.goWild();
             wildPage.startExp();
 
             try {
+                loggedInPage.PAcheck();
                 if (loggedInPage.getIntPA() < 25) {
                     wildPage.drinkGreenPotion();
                     wildPage.confirmPotionUsage();
@@ -81,6 +84,5 @@ public class GoToWildTest extends BaseTest {
                 log.warn("Catch storage alert");
             }
 
-        }
     }
-}
+}}

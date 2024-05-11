@@ -32,9 +32,7 @@ public class LoggedInPage {
     private int intMaxPA;
     private int intAid;
 
-    public int getIntPA() {
-        return intPA;
-    }
+
     
 
     public boolean isUserLoggedIn() {
@@ -55,14 +53,18 @@ public class LoggedInPage {
 //        System.out.println("PA left: " + currentPA + "/" + maxPA);
 
         intPA = Integer.parseInt(currentPA);
-        intMaxPA = Integer.parseInt(maxPA);
+//        intMaxPA = Integer.parseInt(maxPA);
 
-        if (intPA >= 5) {
-            log.info("Chcecking if PA >= 5 successful");
-        } else {
-            log.info("PA < 5, app is closing");
-            driver.close();
-        }
+
+//
+//        if (intPA >= 5) {
+//            log.info("Chcecking if PA >= 5 successful");
+//        } else {
+//            log.info("PA < 5, app is closing");
+//        }
+    }
+    public int getIntPA() {
+        return intPA;
     }
 
     public void notificationClose() {
