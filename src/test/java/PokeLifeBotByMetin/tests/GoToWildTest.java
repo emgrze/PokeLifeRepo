@@ -3,14 +3,13 @@ package PokeLifeBotByMetin.tests;
 import PokeLifeBotByMetin.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 
+import static PokeLifeBotByMetin.utils.TestLogger.log;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class GoToWildTest extends BaseTest {
-    private static Logger LogManager;
-    private static final Logger logger = LogManager.getLogger(GoToWildTest.class);
+
     @Test
     public void goToWildTest() {
         LogInPage logInPage = new LogInPage(driver);
@@ -40,10 +39,12 @@ public class GoToWildTest extends BaseTest {
         BreedingFarmPage breedingFarmPage = new BreedingFarmPage(driver);
 
         wildPage.goWild();
+        if(loggedInPage.getIntAid() < 80) {
+            PokeCenterPage pokeCenterPage = new PokeCenterPage(driver);
+            pokeCenterPage.refillAid();
+        }
 
-        do {
-            loggedInPage.getIntPA();
-            loggedInPage.PAcheck();
+        while (loggedInPage.getIntPA() >= 5) {
             wildPage.startExp();
 
             try {
@@ -51,13 +52,11 @@ public class GoToWildTest extends BaseTest {
                     wildPage.drinkGreenPotion();
                     wildPage.confirmPotionUsage();
                     wildPage.potionConfirmationWindowsClose();
-                    logger.info("Confirmation closed");
-//                    System.out.println("Confirmation closed");
+                    log.info("Confirmation closed");
                 }
             } catch (Exception e) {
                 wildPage.potionLimitReached();
-                logger.warn("Green potion limit exceeded");
-//                System.out.println("Green potion limit exceeded");
+                log.warn("Green potion limit exceeded");
             }
 
             try {
@@ -72,17 +71,16 @@ public class GoToWildTest extends BaseTest {
             try {
                 if (wildPage.fullStorageAlert()) {
                     wildPage.teleportToBreedingFarm();
-//                    wildPage.sellPokemon();
+                    wildPage.sellPokemon();
                     Assert.assertTrue(breedingFarmPage.arePokemonSold());
                     wildPage.goWild();
                 } else {
                     wildPage.goWild();
                 }
             } catch (Exception e) {
-                logger.warn("catch storage alert");
-//                System.out.println("catch storage alert");
+                log.warn("Catch storage alert");
             }
 
-        } while (loggedInPage.getIntPA() >= 5);
+        }
     }
 }

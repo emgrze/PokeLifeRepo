@@ -26,13 +26,6 @@ public class LogInPage {
         LogInPage.driver = driver;
     }
 
-    //        public void login(String username, String password) {
-//        loginInput.clear();
-//        loginInput.sendKeys(username);
-//        passInput.clear();
-//        passInput.sendKeys(password);
-//        logInButton.click();
-//    }
     public void login(String username, String password) {
 
         loginInput.clear();

@@ -59,8 +59,11 @@ public class WildPage {
     @FindBy(name = "tekst")
     private WebElement confirmationInput;
 
+    @FindBy(css = "button#wyloguj>span")
+    private WebElement logoutBtn;
 
     private static WebDriver driver;
+
     private static Logger LogManager;
     private static final Logger logger = LogManager.getLogger(WildPage.class);
 
@@ -173,6 +176,7 @@ public class WildPage {
     public void potionLimitReached() {
         potionLimitReached.isDisplayed();
         potionConfirmationBtnClose.click();
+        logoutBtn.click();
     }
 
     public void teleportToBreedingFarm() {
