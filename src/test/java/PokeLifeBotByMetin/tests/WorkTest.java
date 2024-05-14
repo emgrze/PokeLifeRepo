@@ -6,32 +6,30 @@ import PokeLifeBotByMetin.pages.LoggedInPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GoWorkTest extends BaseTest {
-    @Test
+public class WorkTest extends BaseTest {
+    @Test(priority = 1)
     public void goToWork() {
         LogInPage logInPage = new LogInPage(driver);
-//        logInPage.login("lolku123", "lolku1234!");
-        logInPage.login("lolku1234", "lolku1234!");
+        logInPage.login("lolku123", "lolku1234");
+//        logInPage.login("lolku1234", "lolku1234!");
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
         loggedInPage.notificationClose();
         Assert.assertTrue(loggedInPage.isUserLoggedIn());
-//        loggedInPage.loggedUser();
 
         GoWorkPage goWorkPage = new GoWorkPage(driver);
         goWorkPage.goWork();
     }
 
-    @Test
+    @Test(priority = 2)
     public void finishWork() {
         LogInPage logInPage = new LogInPage(driver);
-//        logInPage.login("lolku123", "lolku1234!");
-        logInPage.login("lolku1234", "lolku1234!");
+        logInPage.login("lolku123", "lolku1234");
+//        logInPage.login("lolku1234", "lolku1234!");
 
         LoggedInPage loggedInPage = new LoggedInPage(driver);
         loggedInPage.notificationClose();
         Assert.assertTrue(loggedInPage.isUserLoggedIn());
-//        loggedInPage.loggedUser();
 
         GoWorkPage goWorkPage = new GoWorkPage(driver);
         goWorkPage.finishWork();

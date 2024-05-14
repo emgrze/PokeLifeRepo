@@ -29,11 +29,8 @@ public class LoggedInPage {
     private WebElement AidLevel;
 
     private int intPA;
-    private int intMaxPA;
     private int intAid;
 
-
-    
 
     public boolean isUserLoggedIn() {
         try {
@@ -50,19 +47,16 @@ public class LoggedInPage {
         String restPA = str.substring(str.indexOf("/") + 1);
         String maxPA = restPA.substring(0, 3);
         log.info("PA left: " + currentPA + "/" + maxPA);
-//        System.out.println("PA left: " + currentPA + "/" + maxPA);
 
         intPA = Integer.parseInt(currentPA);
-//        intMaxPA = Integer.parseInt(maxPA);
 
-
-//
-//        if (intPA >= 5) {
-//            log.info("Chcecking if PA >= 5 successful");
-//        } else {
-//            log.info("PA < 5, app is closing");
-//        }
+        if (intPA >= 5) {
+            log.info("Chcecking if PA >= 5 successful");
+        } else {
+            log.info("PA < 5, app is closing");
+        }
     }
+
     public int getIntPA() {
         return intPA;
     }
@@ -75,11 +69,12 @@ public class LoggedInPage {
                     "var element = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;" +
                     "if (element) element.click();";
             js.executeScript(script);
+            driver.navigate().refresh();
             log.info("Notification closed");
-//            System.out.println("Notification closed");
+
         } catch (Exception e) {
             log.info("No notification to close");
-//            System.out.println("No notification to close");
+
         }
     }
 
@@ -95,6 +90,7 @@ public class LoggedInPage {
 
         }
     }
+
     public int getIntAid() {
         return intAid;
     }

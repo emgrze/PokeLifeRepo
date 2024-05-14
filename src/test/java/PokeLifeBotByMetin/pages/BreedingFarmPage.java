@@ -6,9 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.log4testng.Logger;
-
 import java.time.Duration;
+import static PokeLifeBotByMetin.utils.TestLogger.log;
 
 public class BreedingFarmPage {
     @FindBy(xpath = "(//a[@class='dropdown-toggle'])[3]")
@@ -26,10 +25,10 @@ public class BreedingFarmPage {
     @FindBy(xpath = "(//div[contains(.,'Za sprzedanie')])[5]")
     private WebElement allSold;
 
-    private static WebDriver driver;
+    @FindBy(xpath = "//div[@data-original-title='Posiadanych pokemonów / Maksymalna ilość pokemonów']")
+    private WebElement pokemonQuantity;
 
-    private static Logger LogManager;
-    private static final Logger logger = LogManager.getLogger(LoggedInPage.class);
+    private static WebDriver driver;
 
     public BreedingFarmPage(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -43,13 +42,13 @@ public class BreedingFarmPage {
         try {
             if (sellBtn.isDisplayed()) {
                 sellBtn.click();
-                logger.info("Sell btn clicked");
+                log.info("Sell btn clicked");
                 confirmationInput.sendKeys("potwierdzam");
                 confirmationInput.sendKeys(Keys.ENTER);
-                logger.info("Pokemon sold");
+                log.info("Pokemon sold");
             }
         } catch (Exception e) {
-            logger.info("No pokemon to sell");
+            log.info("Pokemon used for fighting, nothing to sell");
         }
     }
 
@@ -65,10 +64,19 @@ public class BreedingFarmPage {
         if (sellBtn.isDisplayed()) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", sellBtn);
-            logger.info("Sell btn clicked");
+            log.info("Sell btn clicked");
             confirmationInput.sendKeys("potwierdzam");
             confirmationInput.sendKeys(Keys.ENTER);
-            logger.info("Pokemons sold");
+            log.info("Pokemons sold");
+        }
+    }
+    public void checkQuantityOfPokemons() {
+        String str = pokemonQuantity.getText();
+        String pokeQuan = str.substring(0, str.indexOf("/"));
+        if(pokeQuan == "1") {
+            log.info("There's no pokemon to sell");
+        } else {
+            log.info("There's: " + pokeQuan + " Pokemon(s) in the inventory");
         }
     }
 }

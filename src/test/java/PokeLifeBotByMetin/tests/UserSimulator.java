@@ -8,22 +8,23 @@ import static PokeLifeBotByMetin.utils.TestLogger.log;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-public class GoToWildTest extends BaseTest {
+public class UserSimulator extends BaseTest {
 
     @Test
     public void goToWildTest() {
         LogInPage logInPage = new LogInPage(driver);
         LoggedInPage loggedInPage = new LoggedInPage(driver);
 
-//        logInPage.login("lolku1234", "lolku1234!");
         logInPage.login("lolku123", "lolku1234");
+//        logInPage.login("lolku1234", "lolku1234!");
+
+
         try {
             if (loggedInPage.isUserLoggedIn()) {
                 assertTrue(loggedInPage.isUserLoggedIn());
             }
         } catch (Exception e) {
             assertFalse(loggedInPage.isUserLoggedIn());
-//            driver.quit();
         }
 
         loggedInPage.notificationClose();
@@ -38,7 +39,7 @@ public class GoToWildTest extends BaseTest {
 
         BreedingFarmPage breedingFarmPage = new BreedingFarmPage(driver);
 
-        if(loggedInPage.getIntAid() < 80) {
+        if (loggedInPage.getIntAid() < 80) {
             PokeCenterPage pokeCenterPage = new PokeCenterPage(driver);
             pokeCenterPage.refillAid();
         }
@@ -53,7 +54,6 @@ public class GoToWildTest extends BaseTest {
                 loggedInPage.PAcheck();
                 if (loggedInPage.getIntPA() < 25) {
                     wildPage.drinkGreenPotion();
-                    wildPage.confirmPotionUsage();
                     wildPage.potionConfirmationWindowsClose();
                     log.info("Confirmation closed");
                 }
@@ -63,6 +63,7 @@ public class GoToWildTest extends BaseTest {
             }
 
             try {
+                loggedInPage.PAcheck();
                 if (wildPage.isWildTitleVisible()) {
                     wildPage.startExp();
                     Assert.assertEquals(wildPage.getWildTitle(), "Dzicz - wyprawa");
@@ -81,8 +82,8 @@ public class GoToWildTest extends BaseTest {
                     wildPage.goWild();
                 }
             } catch (Exception e) {
-                log.warn("Catch storage alert");
+                wildPage.goWild();
             }
-
+        }
     }
-}}
+}

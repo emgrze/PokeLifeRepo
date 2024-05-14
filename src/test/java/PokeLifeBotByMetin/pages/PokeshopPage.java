@@ -15,7 +15,6 @@ public class PokeshopPage {
     private WebElement placesBtn;
 
     @FindBy(xpath = "//div[@id='menu-collapse']/ul[1]/li[3]/ul[1]/li[4]/a[1]")
-//    @FindBy(xpath = "//a[@href='gra/pokesklep.php']")
     private WebElement pokeshopBtn;
 
     @FindBy(id = "shopCategorySelect")
@@ -29,6 +28,9 @@ public class PokeshopPage {
 
     @FindBy(xpath = "//div[contains(@class,'alert alert-success')]")
     private WebElement shoppingSuccess;
+
+    @FindBy(xpath = "//button[text()=' Kup ']")
+    private WebElement buyButton;
 
     private static WebDriver driver;
 
@@ -49,6 +51,7 @@ public class PokeshopPage {
         select.selectByVisibleText("Pokeballe");
         pokeballBtn.click();
         pokeballQuantityInput.sendKeys("25", Keys.ENTER);
+        buyButton.click();
         logger.info("Pokeballs bought");
     }
 

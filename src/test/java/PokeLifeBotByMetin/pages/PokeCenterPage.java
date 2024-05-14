@@ -7,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.log4testng.Logger;
 
 public class PokeCenterPage {
-//    private static WebDriver driver;
 
     @FindBy(xpath = "(//a[@class='dropdown-toggle'])[3]")
     private WebElement placesList;

@@ -1,13 +1,13 @@
 package PokeLifeBotByMetin.pages;
 
-import PokeLifeBotByMetin.tests.GoToWildTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.log4testng.Logger;
 
 import java.time.Duration;
+
+import static PokeLifeBotByMetin.utils.TestLogger.log;
 
 public class GoWorkPage {
     @FindBy(xpath = "(//a[@class='dropdown-toggle'])[1]")
@@ -25,10 +25,8 @@ public class GoWorkPage {
     @FindBy(xpath = "(//div[contains(.,'Jesteś w trakcie Pracy.Przejdź do Aktywności')])[4]")
     private WebElement workNotification;
 
-    private static WebDriver driver;
 
-    private static Logger LogManager;
-    private static final Logger logger = LogManager.getLogger(GoToWildTest.class);
+    private static WebDriver driver;
 
     public GoWorkPage(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -40,10 +38,10 @@ public class GoWorkPage {
         try {
             if (workNotification.isDisplayed()) {
                 finishWork();
-                logger.info("Work finished");
+                log.info("Player at work, work finished");
             }
         } catch (Exception e) {
-            logger.info("Work status checked, test continues");
+            log.info("Work status checked, test continues");
         }
     }
 
@@ -51,11 +49,13 @@ public class GoWorkPage {
         characterList.click();
         activityBtn.click();
         workBtn.click();
+        log.info("Character started work successfully");
     }
 
     public void finishWork() {
         characterList.click();
         activityBtn.click();
         finishWorkBtn.click();
+        log.info("Character finished work successfully");
     }
 }

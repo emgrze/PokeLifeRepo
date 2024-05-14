@@ -8,6 +8,22 @@ import org.testng.log4testng.Logger;
 import java.time.Duration;
 
 public class WildPage {
+
+    @FindBy(xpath = "(//a[@class='dropdown-toggle'])[1]")
+    private WebElement characterList;
+
+    @FindBy(xpath = "//a[@href='gra/plecak.php']")
+    private WebElement backPackButton;
+
+    @FindBy(xpath = "//div[@data-target='#plecak-zielony_napoj']//img[1]")
+    private WebElement greenPotionInBackpackBtn;
+
+    @FindBy(xpath = "(//button[text()='Użyj'])[1]")
+    private WebElement confirmPotionInBackPack;
+
+    @FindBy(xpath = "(//button[text()=' Potwierdź '])[1]")
+    private WebElement definetelyConfirmPotionUsage;
+
     @FindBy(xpath = "(//a[@class='dropdown-toggle'])[3]")
     private WebElement placesList;
 
@@ -38,16 +54,16 @@ public class WildPage {
     @FindBy(xpath = "(//button[text()=' Potwierdź '])[1]")
     private WebElement potionConfirmationBtn;
 
-    @FindBy(xpath = "(//span[text()='×'])[4]")
+    @FindBy(xpath = "(//button[@class='close']//span)[4]")
     private WebElement potionConfirmationBtnClose;
 
-    @FindBy(xpath = "(//button[text()='Zamknij'])[2]")
+    @FindBy(xpath = "(//div[contains(@class,'alert alert-warning')])")
     private WebElement potionLimitReached;
 
     @FindBy(xpath = "//div[@class='col-xs-12']//div[1]")
     private WebElement fullStorageAlert;
 
-    @FindBy(xpath = "//button[@href='hodowla.php']")
+    @FindBy(xpath = "//a[@href='gra/hodowla.php']")
     private WebElement teleportToBreedingFarmBtn;
 
     @FindBy(xpath = "//body")
@@ -61,6 +77,12 @@ public class WildPage {
 
     @FindBy(css = "button#wyloguj>span")
     private WebElement logoutBtn;
+
+    @FindBy(xpath = "//div[text()='Spróbowałeś uwięzić pokemona w pokeballu, niestety stwór się uwolnił po czym uciekł.']")
+    private WebElement catchUnsuccessful;
+
+    @FindBy(xpath = "//*[contains(text(), 'Udało Ci się złapać')]")
+    private WebElement catchSuccessful;
 
     private static WebDriver driver;
 
@@ -93,18 +115,25 @@ public class WildPage {
 
     public void startExp() {
         try {
-            if (wildTitle.isDisplayed() && pokemonToFight.isDisplayed()) {
-                pokemonToFight.isDisplayed();
+            if (pokemonToFight.isDisplayed()) {
                 pokemonToFight.click();
-                logger.info("Pokemon chosen");
-//                checkPokeballQuantity();
+                logger.info("Pokemon chosen for fight");
+                if (pokeBall.isDisplayed()) {
+                    logger.info("Fight won");
+                }
                 pokeBall.click();
-                logger.info("Pokeball thrown if");
+                logger.info("Pokeball thrown");
+                if (catchUnsuccessful.isDisplayed()) {
+                    logger.info("Catching Pokemon unsuccessful");
+                } else {
+                    logger.info("Pokemon catched!");
+                }
             } else {
-                goWild();
+                continueAdventure();
             }
 
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             try {
                 if (continueButton.isDisplayed()) {
                     continueButton.click();
@@ -120,6 +149,21 @@ public class WildPage {
 
     }
 
+    public void continueAdventure() {
+        continueButton.click();
+        try {
+            startExp();
+        } catch (NoSuchElementException e) {
+            teleportToBreedingFarm();
+        } catch (Exception e) {
+            try {
+                potionConfirmationBtnClose.click();
+            } catch (Exception f) {
+                System.out.println("gowild exception f");
+            }
+        }
+    }
+
     public String getWildTitle() {
         return wildTitle.getText();
     }
@@ -132,31 +176,23 @@ public class WildPage {
         }
     }
 
-    public void checkPokeballQuantity() {
-        System.out.println("liczba kulek: " + pokeballQuantity.getText());
-    }
 
     public void drinkGreenPotion() {
-        try {
-            greenPotion.click();
-            logger.info("Green potion used");
-//            System.out.println("Green potion used");
-        } catch (Exception e) {
-            logger.warn("Potion error");
-//            System.out.println("potion error");
-        }
+        greenPotion.click();
+        logger.info("Green potion used");
     }
 
     public void confirmPotionUsage() {
         potionConfirmationBtn.click();
         logger.info("Potion confirmed");
-//        System.out.println("Potion confirmed");
     }
 
     public void potionConfirmationWindowsClose() {
         try {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", potionConfirmationBtnClose);
+            emptyActionBtn.click();
+            logger.info("Potion confirmation window closed");
         } catch (Exception e) {
             logger.warn("potion window closing failed");
         }
@@ -175,8 +211,9 @@ public class WildPage {
 
     public void potionLimitReached() {
         potionLimitReached.isDisplayed();
-        potionConfirmationBtnClose.click();
-        logoutBtn.click();
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", potionConfirmationBtnClose);
+        driver.close();
     }
 
     public void teleportToBreedingFarm() {
@@ -201,10 +238,11 @@ public class WildPage {
     }
 
     public boolean fullStorageAlert() {
-        try {
-            return fullStorageAlert.isDisplayed();
-        } catch (Exception e) {
-            return false;
+        boolean result = false;
+        if (fullStorageAlert.isDisplayed()) {
+            result = true;
+
         }
+        return result;
     }
 }
