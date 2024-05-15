@@ -2,10 +2,9 @@ package PokeLifeBotByMetin.tests;
 
 import PokeLifeBotByMetin.pages.LogInPage;
 import PokeLifeBotByMetin.pages.LoggedInPage;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CheckPA extends BaseTest {
+public class CheckPATest extends BaseTest {
     @Test
     public void checkPA() {
         LogInPage logInPage = new LogInPage(driver);

@@ -16,6 +16,9 @@ public class LogInPage {
     @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement logInButton;
 
+    @FindBy(xpath = "//div[contains(@class,'alert alert-danger')]")
+    private WebElement loginFailedAlert;
+
     private static WebDriver driver;
 
     public LogInPage(WebDriver driver) {
@@ -24,10 +27,20 @@ public class LogInPage {
     }
 
     public void login(String username, String password) {
+
         loginInput.clear();
         loginInput.sendKeys(username);
         passInput.clear();
         passInput.sendKeys(password);
         logInButton.click();
+    }
+
+    public boolean loginFailed() {
+        try {
+            loginFailedAlert.isDisplayed();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

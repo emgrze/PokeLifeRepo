@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Surefire suite]" verbose="0">
+  <test thread-count="5" name="Surefire test(failed)" verbose="0">
+    <classes>
+      <class name="PokeLifeBotByMetin.tests.BreedingFarmSellAllTest">
+        <methods>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="sellAllPokemon"/>
+        </methods>
+      </class> <!-- PokeLifeBotByMetin.tests.BreedingFarmSellAllTest -->
+      <class name="PokeLifeBotByMetin.tests.GoWorkTest">
+        <methods>
+          <include name="setup"/>
+          <include name="goToWork"/>
+          <include name="tearDown"/>
+          <include name="finishWork"/>
+        </methods>
+      </class> <!-- PokeLifeBotByMetin.tests.GoWorkTest -->
+      <class name="PokeLifeBotByMetin.tests.GoToWildTest">
+        <methods>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="goToWildTest"/>
+        </methods>
+      </class> <!-- PokeLifeBotByMetin.tests.GoToWildTest -->
+      <class name="PokeLifeBotByMetin.tests.BuyPokeballsTest">
+        <methods>
+          <include name="buyPokeballs"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- PokeLifeBotByMetin.tests.BuyPokeballsTest -->
+    </classes>
+  </test> <!-- Surefire test(failed) -->
+</suite> <!-- Failed suite [Surefire suite] -->
